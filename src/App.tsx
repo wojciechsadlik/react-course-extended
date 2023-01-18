@@ -1,22 +1,13 @@
-import React from "react";
+import React from 'react';
 import './App.css';
+import Navbar from './Navbar';
 
 function App() {
-  const title = "Messing around with different data";
-  const num = 50;
-  const arr = [1, 2, 3];
-  const rand = Math.random() * 10;
-  const link = "https://www.google.com/";
-
   return (
     <div className="App">
+      <Navbar />
       <div className="content">
-        <h1>{title}</h1>
-        <p>Number: {num}</p>
-        <p>Numbers: {arr}</p>
-        <p>Random number: {rand}</p>
-
-        <a href={link}>Google Site</a>
+        <Home />
       </div>
     </div>
   );
