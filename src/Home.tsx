@@ -3,22 +3,21 @@ import BlogList from './BlogList';
 import IBlogEntry from './IBlogEntry';
 
 const Home = () => {
-  const blogs: IBlogEntry[] = [];
-
-  const [blogsState, setBlogsState] = useState(blogs);
-
-  const handleDelete = (id: number) => {
-    const newBlogsState = blogsState.filter(blog => blog.id !== id);
-    setBlogsState(newBlogsState);
-  }
+  const [blogs, setBlogs] = useState(Array<IBlogEntry>());
 
   useEffect(() => {
-    console.log("use effect ran");
-  });
+    fetch("http://localhost:8000/blogs")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setBlogs(data);
+      });
+  }, []);
 
   return (
     <div className="home">
-      <BlogList blogs={blogsState} title="All Blogs" handleDelete={handleDelete} />
+      {blogs && <BlogList blogs={blogs} title="All Blogs"/>}
     </div>
   );
 }
