@@ -1,8 +1,8 @@
 import React from 'react';
-import BlogPreview from './IBlogPreview';
+import IBlogEntry from './IBlogEntry';
 
 interface BlogListProps {
-  blogs: BlogPreview[],
+  blogs: IBlogEntry[],
   title: string,
   handleDelete: (id: number) => void
 }
