@@ -1,8 +1,13 @@
 import React from 'react';
 import BlogPreview from './IBlogPreview';
 
+interface BlogListProps {
+  blogs: BlogPreview[],
+  title: string,
+  handleDelete: (id: number) => void
+}
 
-const BlogList = ({ blogs, title }: {blogs: BlogPreview[], title: string}) => {
+const BlogList = ({ blogs, title, handleDelete }: BlogListProps) => {
   return (
     <div className="blog-list">
       <h2>{ title }</h2>
@@ -10,6 +15,7 @@ const BlogList = ({ blogs, title }: {blogs: BlogPreview[], title: string}) => {
         <div className="blog-preview" key={blog.id}>
           <h2>{ blog.title }</h2>
           <p>Written by { blog.author }</p>
+          <button onClick={() => handleDelete(blog.id)}>Delete Blog</button>
         </div>
       ))}
     </div>

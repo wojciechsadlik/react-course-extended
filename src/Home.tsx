@@ -9,11 +9,16 @@ const Home = () => {
     { title: "Blog 3", body: "Blog 3 Body ...", author: "Author 1", id: 3 },
   ];
 
-  const [blogsState, setBlogs] = useState(blogs);
+  const [blogsState, setBlogsState] = useState(blogs);
+
+  const handleDelete = (id: number) => {
+    const newBlogsState = blogsState.filter(blog => blog.id !== id);
+    setBlogsState(newBlogsState);
+  }
 
   return (
     <div className="home">
-      <BlogList blogs={blogsState} title="All Blogs"/>
+      <BlogList blogs={blogsState} title="All Blogs" handleDelete={handleDelete} />
     </div>
   );
 }
