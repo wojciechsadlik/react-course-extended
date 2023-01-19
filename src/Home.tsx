@@ -3,9 +3,9 @@ import BlogList from './BlogList';
 import IBlogEntry from './IBlogEntry';
 
 const Home = () => {
-  const [blogs, setBlogs] = useState(null);
+  const [blogs, setBlogs] = useState(Array<IBlogEntry>);
   const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8000/blogs")
@@ -18,7 +18,7 @@ const Home = () => {
       })
       .then((data) => {
         setIsPending(false);
-        setError(null);
+        setError("");
         setBlogs(data);
       })
       .catch((err) => {
@@ -32,7 +32,7 @@ const Home = () => {
     <div className="home">
       {error && <div>{error}</div>}
       {isPending && <div>Loading...</div>}
-      {blogs && <BlogList blogs={blogs} title="All Blogs"/>}
+      {blogs.length !== 0 && <BlogList blogs={blogs} title="All Blogs"/>}
     </div>
   );
 }
