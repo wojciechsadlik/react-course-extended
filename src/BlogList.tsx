@@ -18,6 +18,6 @@ const BlogList = ({ blogs, title }: BlogListProps) => {
       ))}
     </div>
   );
-}
+};
 
 export default BlogList;
