@@ -1,18 +1,6 @@
 {
   "blogs": [
     {
-      "title": "Blog 1",
-      "body": "Blog 1 Body ...",
-      "author": "Author 1",
-      "id": 1
-    },
-    {
-      "title": "Blog 2",
-      "body": "Blog 2 Body ...",
-      "author": "Author 2",
-      "id": 2
-    },
-    {
       "title": "Blog 3",
       "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas turpis ante, lacinia ut gravida vitae, pharetra at enim. Vestibulum aliquet enim ante, nec pharetra orci convallis a. Nunc libero tortor, molestie et odio eget, sodales molestie eros. Vivamus a lectus mauris. Integer mattis ut justo at pellentesque. Sed fermentum neque leo, id iaculis elit dictum a. Pellentesque cursus efficitur congue. Aliquam erat volutpat. Phasellus eget vestibulum nunc. Aenean quis pharetra purus. Fusce eu nibh congue, pulvinar nunc in, tempor purus.",
       "author": "Author 1",

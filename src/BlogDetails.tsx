@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import IBlogEntry from './IBlogEntry';
 import useFetch, {IUseFetchOutProps} from './useFetch';
 
@@ -8,6 +8,16 @@ const BlogDetails = () => {
   const {data: blog, isPending, error}: IUseFetchOutProps<IBlogEntry>
     = useFetch<IBlogEntry>("http://localhost:8000/blogs/" + id);
   
+  const navigate = useNavigate();
+  
+  const handleDeleteClick = () => {
+    fetch("http://localhost:8000/blogs/" + id, {
+      method: "DELETE"
+    }).then(() => {
+      navigate("/");
+    });
+  }
+
   return (
     <div className="blog-details">
       {isPending && <div>Loading...</div>}
@@ -17,6 +27,7 @@ const BlogDetails = () => {
           <h2>{blog.title}</h2>
           <h3>Written by {blog.author}</h3>
           <div>{blog.body}</div>
+          <button onClick={handleDeleteClick}>Delete</button>
         </article>
       )}
     </div>

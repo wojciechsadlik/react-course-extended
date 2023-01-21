@@ -64,6 +64,15 @@
 .blog-details div {
   text-align: justify;
   text-justify: inter-word;
+  margin-bottom: 20px;
+}
+.blog-details button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 /* create new blog form */
