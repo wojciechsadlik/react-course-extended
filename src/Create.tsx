@@ -1,5 +1,4 @@
 import React, { SyntheticEvent, useState } from 'react';
-import IBlogEntry from './IBlogEntry';
 
 const Create = () => {
   const [title, setTitle] = useState("");
