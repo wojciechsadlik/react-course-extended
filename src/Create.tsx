@@ -1,10 +1,12 @@
 import React, { SyntheticEvent, useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("author1");
   const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -19,6 +21,8 @@ const Create = () => {
     }).then(() => {
       setIsPending(false);
       console.log("new blog added");
+
+      navigate("/");
     });
   }
 
@@ -44,9 +48,9 @@ const Create = () => {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         >
-          <option value="author1">author1</option>
-          <option value="author2">author2</option>
-          <option value="author3">author3</option>
+          <option value="Author 1">Author 1</option>
+          <option value="Author 2">Author 2</option>
+          <option value="Author 3">Author 3</option>
         </select>
         { !isPending && <button>Add blog</button> }
         { isPending && <button disabled>Adding blog...</button> }
