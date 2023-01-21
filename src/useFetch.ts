@@ -1,13 +1,13 @@
 import {useState, useEffect} from "react";
 
 interface IUseFetchOutProps<T> {
-  data: T[];
+  data: T | undefined;
   isPending: boolean;
   error: string;
 }
 
 const useFetch = <T,>(fetchAddress: string): IUseFetchOutProps<T> => {
-  const [data, setData] = useState(Array<T>);
+  const [data, setData] = useState<T>();
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState("");
 
@@ -20,7 +20,7 @@ const useFetch = <T,>(fetchAddress: string): IUseFetchOutProps<T> => {
         
         return res.json();
       })
-      .then((data) => {
+      .then((data: T) => {
         setIsPending(false);
         setError("");
         setData(data);
@@ -30,9 +30,10 @@ const useFetch = <T,>(fetchAddress: string): IUseFetchOutProps<T> => {
         setError(err.message);
         console.log(err.message);
       });
-  }, []);
+  }, [fetchAddress]);
 
   return {data, isPending, error};
 };
 
 export default useFetch;
+export {IUseFetchOutProps};
