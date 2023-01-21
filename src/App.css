@@ -51,3 +51,17 @@
 .blog-preview a {
   text-decoration: none;
 }
+
+/* blog details page */
+.blog-details h2 {
+  font-size: 20px;
+  color: #f1356d;
+}
+.blog-details h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.blog-details div {
+  text-align: justify;
+  text-justify: inter-word;
+}
