@@ -5,7 +5,7 @@ import {IBlogEntryPost} from './IBlogEntry';
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [author, setAuthor] = useState("author1");
+  const [author, setAuthor] = useState("Author 1");
   const [isPending, setIsPending] = useState(false);
   const navigate = useNavigate();
 
@@ -24,6 +24,8 @@ const Create = () => {
       console.log("new blog added");
 
       navigate("/");
+    }).catch((e) => {
+      console.log(e);
     });
   }
 
