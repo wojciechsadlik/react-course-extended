@@ -59,11 +59,14 @@
 }
 .blog-details h3 {
   font-size: 18px;
-  margin-bottom: 20px;
+}
+.blog-details h4 {
+  font-size: 16px;
 }
 .blog-details div {
   text-align: justify;
   text-justify: inter-word;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .blog-details button {

@@ -15,7 +15,7 @@ const BlogList = ({ blogs, title }: BlogListProps) => {
         <div className="blog-preview" key={blog.id}>
           <Link to={`/blogs/${blog.id}`}>
             <h2>{ blog.title }</h2>
-            <p>Written by { blog.author }</p>
+            <p>Written by { blog.author } on {blog.date.toLocaleString()}</p>
           </Link>
         </div>
       ))}

@@ -5,6 +5,7 @@ interface IBlogEntryPost {
 }
 
 interface IBlogEntryGet extends IBlogEntryPost {
+    date: Date,
     id: number
 }
 

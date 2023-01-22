@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import castDates from "./castDates";
 
 interface IUseFetchOutProps<T> {
   data: T | undefined;
@@ -6,7 +7,7 @@ interface IUseFetchOutProps<T> {
   error: string;
 }
 
-const useFetch = <T,>(fetchAddress: string): IUseFetchOutProps<T> => {
+const useFetch = <T extends object,>(fetchAddress: string): IUseFetchOutProps<T> => {
   const [data, setData] = useState<T>();
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState("");
@@ -21,6 +22,7 @@ const useFetch = <T,>(fetchAddress: string): IUseFetchOutProps<T> => {
         return res.json();
       })
       .then((data: T) => {
+        castDates(data);
         setIsPending(false);
         setError("");
         setData(data);

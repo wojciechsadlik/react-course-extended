@@ -26,6 +26,7 @@ const BlogDetails = () => {
         <article>
           <h2>{blog.title}</h2>
           <h3>Written by {blog.author}</h3>
+          <h4>On {blog.date.toLocaleString()}</h4>
           <div>{blog.body}</div>
           <button onClick={handleDeleteClick}>Delete</button>
         </article>
