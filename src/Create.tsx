@@ -1,13 +1,18 @@
 import React, { SyntheticEvent, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import { IAuthorGet } from './IAuthor';
 import {IBlogEntryPost} from './IBlogEntry';
+import useFetch from './useFetch';
 
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [author, setAuthor] = useState("Author 1");
+  const [author, setAuthor] = useState("");
   const [isPending, setIsPending] = useState(false);
   const navigate = useNavigate();
+
+  const {data: authors, ...authorsFetchStatus}
+    = useFetch<IAuthorGet[]>("http://localhost:8000/authors");
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -47,14 +52,18 @@ const Create = () => {
           onChange={(e) => setBody(e.target.value)}
         ></textarea>
         <label>Blog author:</label>
-        <select
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-        >
-          <option value="Author 1">Author 1</option>
-          <option value="Author 2">Author 2</option>
-          <option value="Author 3">Author 3</option>
-        </select>
+        {authorsFetchStatus.isPending && <div>Loading authors...</div>}
+        {authorsFetchStatus.error && <div>{authorsFetchStatus.error}</div>}
+        {!authorsFetchStatus.isPending && authors
+          && <select onChange={(e) => setAuthor(e.target.value)}>
+            {authors.map((author) => (
+              <option
+                value={author.author}
+                key={author.id}>
+                  {author.author}
+              </option>
+            ))}
+        </select>}
         { !isPending && <button>Add blog</button> }
         { isPending && <button disabled>Adding blog...</button> }
       </form>
