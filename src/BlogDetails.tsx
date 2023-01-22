@@ -1,12 +1,12 @@
 import React from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import IBlogEntry from './IBlogEntry';
+import {IBlogEntryGet} from './IBlogEntry';
 import useFetch, {IUseFetchOutProps} from './useFetch';
 
 const BlogDetails = () => {
   const { id } = useParams();
-  const {data: blog, isPending, error}: IUseFetchOutProps<IBlogEntry>
-    = useFetch<IBlogEntry>("http://localhost:8000/blogs/" + id);
+  const {data: blog, isPending, error}: IUseFetchOutProps<IBlogEntryGet>
+    = useFetch<IBlogEntryGet>("http://localhost:8000/blogs/" + id);
   
   const navigate = useNavigate();
   

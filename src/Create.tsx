@@ -1,5 +1,6 @@
 import React, { SyntheticEvent, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import {IBlogEntryPost} from './IBlogEntry';
 
 const Create = () => {
   const [title, setTitle] = useState("");
@@ -10,7 +11,7 @@ const Create = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    const blog = {title, body, author};
+    const blog: IBlogEntryPost = {title, body, author};
     
     setIsPending(true);
 

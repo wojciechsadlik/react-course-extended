@@ -1,8 +1,11 @@
-interface IBlogEntry {
+interface IBlogEntryPost {
     title: string,
     body: string,
-    author: string,
+    author: string
+}
+
+interface IBlogEntryGet extends IBlogEntryPost {
     id: number
 }
 
-export default IBlogEntry;
+export {IBlogEntryPost, IBlogEntryGet};

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import IBlogEntry from './IBlogEntry';
+import {IBlogEntryGet} from './IBlogEntry';
 
 interface BlogListProps {
-  blogs: IBlogEntry[],
+  blogs: IBlogEntryGet[],
   title: string
 }
 
