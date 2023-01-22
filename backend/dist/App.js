@@ -3,12 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const app = (0, express_1.default)();
+const json_server_1 = __importDefault(require("json-server"));
+const server = json_server_1.default.create();
+const router = json_server_1.default.router("data/db.json");
+const middlewares = json_server_1.default.defaults();
 const port = 8000;
-app.get("/", (req, res) => {
-    res.send("Express is working");
-});
-app.listen(port, () => {
+server.use(middlewares);
+server.use(router);
+server.listen(port, () => {
     console.log(`[server]: App backend is listening on port ${port}`);
 });

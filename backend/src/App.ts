@@ -1,12 +1,13 @@
-import express from 'express';
+import jsonServer from 'json-server';
 
-const app = express();
+const server = jsonServer.create();
+const router = jsonServer.router("data/db.json");
+const middlewares = jsonServer.defaults();
 const port = 8000;
 
-app.get("/", (req, res) => {
-    res.send("Express is working");
-});
+server.use(middlewares);
+server.use(router);
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`[server]: App backend is listening on port ${port}`);
 });
