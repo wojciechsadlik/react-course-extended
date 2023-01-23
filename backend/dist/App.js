@@ -20,8 +20,9 @@ server.post('/blogs/', (req, res, next) => {
 server.post('/authors/', (req, res, next) => {
     const newAuthor = req.body.author;
     if (!newAuthor) {
+        res.statusMessage = "Author is empty";
         res.sendStatus(400);
-        next();
+        return;
     }
     try {
         fs_1.default.readFile(dbPath, (err, data) => {
@@ -36,7 +37,11 @@ server.post('/authors/', (req, res, next) => {
             if (authors.find((author) => {
                 return author.author === newAuthor;
             })) {
-                res.status(400).send("Author already exists");
+                res.statusMessage = "Author already exists";
+                res.sendStatus(400);
+            }
+            else {
+                next();
             }
         });
     }

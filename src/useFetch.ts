@@ -27,7 +27,7 @@ const useFetch = <T extends object,>(fetchAddress: string): IUseFetchOutProps<T>
         setError("");
         setData(data);
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         setIsPending(false);
         setError(err.message);
         console.log(err.message);

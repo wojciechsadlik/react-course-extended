@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Register = () => {
   const [author, setAuthor] = useState("Author 1");
   const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: SyntheticEvent) => {
@@ -15,13 +16,18 @@ const Register = () => {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({author: author})
-    }).then(() => {
+    }).then((res) => {
+      if (!res.ok)
+        throw Error(`Could not register: ${res.status}, ${res.statusText}`);
+      
       setIsPending(false);
       console.log("new author registered");
 
       navigate("/");
-    }).catch((e) => {
+    }).catch((e: Error) => {
+      setIsPending(false);
       console.log(e);
+      setError(e.message);
     });
   };
 
@@ -36,6 +42,7 @@ const Register = () => {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
+        { error! && <div>{error}</div> }
         { !isPending && <button>Register</button> }
         { isPending && <button disabled>Adding Author...</button> }
       </form>

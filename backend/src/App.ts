@@ -23,7 +23,9 @@ server.post('/authors/', (req,res,next) => {
     const newAuthor: string = req.body.author;
 
     if (!newAuthor) {
-        res.status(400).send("Author is empty");
+        res.statusMessage = "Author is empty";
+        res.sendStatus(400);
+        return;
     }
 
     try {
@@ -41,7 +43,11 @@ server.post('/authors/', (req,res,next) => {
             if (authors.find((author) => {
                 return author.author === newAuthor;
             })) {
-                res.status(400).send("Author already exists");
+                res.statusMessage = "Author already exists";
+                res.sendStatus(400);
+            }
+            else {
+                next();
             }
         });
     }
