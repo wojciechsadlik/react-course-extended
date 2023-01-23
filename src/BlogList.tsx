@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import {IBlogEntryGet} from './IBlogEntry';
 
 interface BlogListProps {
-  blogs: IBlogEntryGet[],
-  title: string
+  blogs: IBlogEntryGet[];
+  title: string;
 }
 
 const BlogList = ({ blogs, title }: BlogListProps) => {

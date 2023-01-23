@@ -12,6 +12,10 @@
     {
       "author": "Author 1",
       "id": 1
+    },
+    {
+      "author": "Author 2",
+      "id": 3
     }
   ]
 }

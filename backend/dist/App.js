@@ -15,6 +15,10 @@ server.post('/blogs/', (req, res, next) => {
     req.body.date = new Date().toJSON();
     next();
 });
+server.post('/authors/', (req, res, next) => {
+    console.log(req.body);
+    next();
+});
 server.use(router);
 server.listen(port, () => {
     console.log(`[server]: App backend is listening on port ${port}`);
