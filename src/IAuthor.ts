@@ -1,6 +1,6 @@
 interface IAuthorGet {
-    author: string,
-    id: number
+    author: string;
+    id: number;
 }
 
 export {IAuthorGet}
