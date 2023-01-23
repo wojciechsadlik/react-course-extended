@@ -19,7 +19,7 @@ const Create = () => {
     && authors) {
       setAuthor(authors[0].author);  
     }
-  }, [authorsFetchStatus.isPending]);
+  }, [authorsFetchStatus.isPending, authors]);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
