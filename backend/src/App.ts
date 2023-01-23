@@ -1,6 +1,8 @@
 import jsonServer from 'json-server';
 import path from 'path';
 import fs from 'fs';
+import IAuthor from './IAuthor';
+import { isArrayBufferView } from 'util/types';
 
 const dbPath = path.join(__dirname, "../data/db.json");
 const server = jsonServer.create();
@@ -18,15 +20,35 @@ server.post('/blogs/', (req,res,next) => {
 });
 
 server.post('/authors/', (req,res,next) => {
-    const author = req.body.author;
+    const newAuthor: string = req.body.author;
 
-    fs.readFile(dbPath, (err, data) => {
-        if (err) throw err;
+    if (!newAuthor) {
+        res.status(400).send("Author is empty");
+    }
 
-        const authors = JSON.parse(data.toString());
-    });
-
-    next();
+    try {
+        fs.readFile(dbPath, (err, data) => {
+            if (err) throw err;
+    
+            const db = JSON.parse(data.toString());
+            const authors: Array<IAuthor> = db.authors;
+    
+            if (typeof authors === "undefined"
+            || !Array.isArray(authors)
+            || !("author" in authors[0]))
+                throw Error ("authors not read");
+    
+            if (authors.find((author) => {
+                return author.author === newAuthor;
+            })) {
+                res.status(400).send("Author already exists");
+            }
+        });
+    }
+    catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 });
 
 server.use(router);
