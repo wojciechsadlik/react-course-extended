@@ -64,7 +64,7 @@ const Create = () => {
         {!authorsFetchStatus.isPending && authors
           && <select 
               onChange={(e) => setAuthor(e.target.value)}
-              value={authors[0].author}
+              defaultValue={authors[0].author}
             >
             { 
               authors.map((author) => (
