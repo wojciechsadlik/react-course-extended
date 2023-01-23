@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import { IAuthorGet } from './IAuthor';
 import {IBlogEntryPost} from './IBlogEntry';
@@ -13,6 +13,13 @@ const Create = () => {
 
   const {data: authors, ...authorsFetchStatus}
     = useFetch<IAuthorGet[]>("http://localhost:8000/authors");
+
+  useEffect(() => {
+    if (!authorsFetchStatus.isPending
+    && authors) {
+      setAuthor(authors[0].author);  
+    }
+  }, [authorsFetchStatus.isPending]);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -55,12 +62,17 @@ const Create = () => {
         {authorsFetchStatus.isPending && <div>Loading authors...</div>}
         {authorsFetchStatus.error && <div>{authorsFetchStatus.error}</div>}
         {!authorsFetchStatus.isPending && authors
-          && <select onChange={(e) => setAuthor(e.target.value)}>
-            {authors.map((author) => (
+          && <select 
+              onChange={(e) => setAuthor(e.target.value)}
+              value={authors[0].author}
+            >
+            { 
+              authors.map((author) => (
               <option
                 value={author.author}
-                key={author.id}>
-                  {author.author}
+                key={author.id}
+              >
+                {author.author}
               </option>
             ))}
         </select>}

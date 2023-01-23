@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFetch from './useFetch';
 const Create = () => {
@@ -19,6 +19,12 @@ const Create = () => {
     const [isPending, setIsPending] = useState(false);
     const navigate = useNavigate();
     const _a = useFetch("http://localhost:8000/authors"), { data: authors } = _a, authorsFetchStatus = __rest(_a, ["data"]);
+    useEffect(() => {
+        if (!authorsFetchStatus.isPending
+            && authors) {
+            setAuthor(authors[0].author);
+        }
+    }, [authorsFetchStatus.isPending]);
     const handleSubmit = (e) => {
         e.preventDefault();
         const blog = { title, body, author };
@@ -46,7 +52,7 @@ const Create = () => {
             authorsFetchStatus.isPending && React.createElement("div", null, "Loading authors..."),
             authorsFetchStatus.error && React.createElement("div", null, authorsFetchStatus.error),
             !authorsFetchStatus.isPending && authors
-                && React.createElement("select", { onChange: (e) => setAuthor(e.target.value) }, authors.map((author) => (React.createElement("option", { value: author.author, key: author.id }, author.author)))),
+                && React.createElement("select", { onChange: (e) => setAuthor(e.target.value), value: authors[0].author }, authors.map((author) => (React.createElement("option", { value: author.author, key: author.id }, author.author)))),
             !isPending && React.createElement("button", null, "Add blog"),
             isPending && React.createElement("button", { disabled: true }, "Adding blog..."))));
 };
