@@ -1,15 +1,21 @@
-// import logo from './logo.svg';
-import * as React from "react";
-import './App.css';
-const logo = require("./logo.svg");
+import React from 'react';
+import Navbar from './Navbar';
+import Home from './Home';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Create from './Create';
+import BlogDetails from './BlogDetails';
+import NotFound from './NotFound';
+import Register from './Register';
 function App() {
-    return (React.createElement("div", { className: "App" },
-        React.createElement("header", { className: "App-header" },
-            React.createElement("img", { src: logo, className: "App-logo", alt: "logo" }),
-            React.createElement("p", null,
-                "Edit ",
-                React.createElement("code", null, "src/App.js"),
-                " and save to reload."),
-            React.createElement("a", { className: "App-link", href: "https://reactjs.org", target: "_blank", rel: "noopener noreferrer" }, "Learn React"))));
+    return (React.createElement(Router, null,
+        React.createElement("div", { className: "App" },
+            React.createElement(Navbar, null),
+            React.createElement("div", { className: "content" },
+                React.createElement(Routes, null,
+                    React.createElement(Route, { path: "/", element: React.createElement(Home, null) }),
+                    React.createElement(Route, { path: "/create", element: React.createElement(Create, null) }),
+                    React.createElement(Route, { path: "/blogs/:id", element: React.createElement(BlogDetails, null) }),
+                    React.createElement(Route, { path: "/register", element: React.createElement(Register, null) }),
+                    React.createElement(Route, { path: "*", element: React.createElement(NotFound, null) }))))));
 }
 export default App;

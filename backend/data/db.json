@@ -4,8 +4,15 @@
       "title": "Blog 3",
       "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas turpis ante, lacinia ut gravida vitae, pharetra at enim. Vestibulum aliquet enim ante, nec pharetra orci convallis a. Nunc libero tortor, molestie et odio eget, sodales molestie eros. Vivamus a lectus mauris. Integer mattis ut justo at pellentesque. Sed fermentum neque leo, id iaculis elit dictum a. Pellentesque cursus efficitur congue. Aliquam erat volutpat. Phasellus eget vestibulum nunc. Aenean quis pharetra purus. Fusce eu nibh congue, pulvinar nunc in, tempor purus.",
       "author": "Author 1",
-      "date": "2023-01-22T10:18:42.615Z",
+      "date": "2023-01-23T09:15:33.049Z",
       "id": 3
+    },
+    {
+      "title": "Testing date handling",
+      "body": "Donec dapibus nibh ut ex tristique, in posuere leo dapibus. Vestibulum feugiat ultricies elit non viverra. Duis a ante vitae dui tempus iaculis. Maecenas non elit vehicula, elementum purus eget, hendrerit nisi. Donec varius nibh vel ipsum volutpat posuere at non nibh. Vestibulum tempus turpis eget vestibulum interdum. Suspendisse tincidunt elit scelerisque massa porttitor, a ultrices purus gravida.",
+      "author": "",
+      "date": "2023-01-23T09:20:00.958Z",
+      "id": 4
     }
   ],
   "authors": [
