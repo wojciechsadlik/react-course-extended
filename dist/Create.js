@@ -24,7 +24,7 @@ const Create = () => {
             && authors) {
             setAuthor(authors[0].author);
         }
-    }, [authorsFetchStatus.isPending]);
+    }, [authorsFetchStatus.isPending, authors]);
     const handleSubmit = (e) => {
         e.preventDefault();
         const blog = { title, body, author };
@@ -52,7 +52,7 @@ const Create = () => {
             authorsFetchStatus.isPending && React.createElement("div", null, "Loading authors..."),
             authorsFetchStatus.error && React.createElement("div", null, authorsFetchStatus.error),
             !authorsFetchStatus.isPending && authors
-                && React.createElement("select", { onChange: (e) => setAuthor(e.target.value), value: authors[0].author }, authors.map((author) => (React.createElement("option", { value: author.author, key: author.id }, author.author)))),
+                && React.createElement("select", { onChange: (e) => setAuthor(e.target.value), defaultValue: authors[0].author }, authors.map((author) => (React.createElement("option", { value: author.author, key: author.id }, author.author)))),
             !isPending && React.createElement("button", null, "Add blog"),
             isPending && React.createElement("button", { disabled: true }, "Adding blog..."))));
 };
