@@ -16,6 +16,7 @@
 }
 .navbar h1 {
   color: #f1356d;
+  margin-bottom: 10px;
 }
 .navbar .links {
   margin-left: auto;
